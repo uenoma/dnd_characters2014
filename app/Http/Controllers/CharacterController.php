@@ -35,7 +35,6 @@ class CharacterController extends Controller
             'player_name' => 'required|string|max:255',
             'species' => 'required|string|max:255',
             'alignment' => 'required|string|max:255',
-            'details' => 'required|json',
             'password' => 'required|string|min:8',
         ]);
 
@@ -45,10 +44,9 @@ class CharacterController extends Controller
           'player_name' => $request->player_name,
           'species' => $request->species,
           'alignment' => $request->alignment,
-          'details' => $request->details,
+          'details' => json_encode($request->input()),
           'password' => Hash::make($request->password),
-      ]);
-
+        ]);
         return response()->json(['message' => 'Character created successfully', 'character' => $character], 201);
     }
 
@@ -63,7 +61,6 @@ class CharacterController extends Controller
             'player_name' => 'required|string|max:255',
             'species' => 'required|string|max:255',
             'alignment' => 'required|string|max:255',
-            'details' => 'required|json',
             'password' => 'required|string|min:8',
         ]);
 
@@ -75,8 +72,8 @@ class CharacterController extends Controller
                 'player_name' => $request->player_name,
                 'species' => $request->species,
                 'alignment' => $request->alignment,
-                'details' => $request->details,
-            ]);
+                'details' => json_encode($request->input()),
+              ]);
 
             return response()->json(['message' => 'Character updated successfully', 'character' => $character], 200);
         } else {
@@ -102,5 +99,4 @@ class CharacterController extends Controller
             return response()->json(['message' => 'Password does not match'], 403);
         }
     }
-
 }
