@@ -10,9 +10,12 @@ Route::get('/user', function (Request $request) {
 
 Route::middleware('api')->group(function () {
     // Route::put('/characters/{id}', [CharacterController::class, 'update']);
-    Route::get('/characters', [CharacterController::class, 'index']);
-    Route::get('/characters/{id}', [CharacterController::class, 'show']);
-    Route::post('/characters.store', [CharacterController::class, 'store']);
-    Route::post('/characters.update/{id}', [CharacterController::class, 'update']);
-    Route::delete('/characters.delete/{id}', [CharacterController::class, 'destroy']);
+});
+
+Route::middleware(['cors'])->group(function () {
+  Route::get('/characters', [CharacterController::class, 'index']);
+  Route::get('/characters/{id}', [CharacterController::class, 'show']);
+  Route::post('/characters.store', [CharacterController::class, 'store']);
+  Route::post('/characters.update/{id}', [CharacterController::class, 'update']);
+  Route::delete('/characters.delete/{id}', [CharacterController::class, 'destroy']);
 });
