@@ -99,4 +99,9 @@ class CharacterController extends Controller
             return response()->json(['message' => 'Password does not match'], 403);
         }
     }
+    
+    public function options()
+    {
+        // クロスドメイン環境からOPTIONSメソッドを許可する為の暫定関数
+    }
 }

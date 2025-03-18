@@ -18,4 +18,5 @@ Route::middleware(['cors'])->group(function () {
   Route::post('/characters.store', [CharacterController::class, 'store']);
   Route::post('/characters.update/{id}', [CharacterController::class, 'update']);
   Route::delete('/characters.delete/{id}', [CharacterController::class, 'destroy']);
+  Route::options('/characters.options', [CharacterController::class, 'options']);
 });
